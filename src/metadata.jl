@@ -18,7 +18,7 @@ function save_metadata(file::String, description::String)
     d["description"] = description
     d["time created"] = format(now(), dateformat"yyyy-mm-dd HH:MM:SS.sss")
     st = stacktrace()
-    i = findfirst(s->contains("repl")(lowercase(string(s))), st)
+    i = findfirst(s->contains("top-level")(string(s)), st)
     if i === nothing
         d["stack trace"] = st
     else
@@ -36,7 +36,7 @@ function save_metadata(file::String, description::String)
         end
         d["previous"] = previous
     end
-    meta[file] = d
+    meta[basename(file)] = d
 
     # Sort and save
     sort!(meta)
@@ -44,3 +44,9 @@ function save_metadata(file::String, description::String)
     return meta_file
 end
 export save_metadata
+
+
+function blah()
+    return stacktrace()
+end
+export blah
