@@ -2,6 +2,8 @@ using Test
 using E4STUtil
 using YAML
 
+import E4STUtil.save_dep_metadata
+
 @testset "Test E4STUtil" begin
     @testset "Test USD conversion rate" begin
         @testset "Test Default Behavior" begin
@@ -34,5 +36,19 @@ using YAML
         @test haskey(meta["myfile.md"], "previous")
         @test length(meta["myfile.md"]["previous"]) == 2
         rm(md_file)
+    end
+
+    @testset "Test saving metadata for data deps" begin
+        md_file = save_dep_metadata(joinpath(@__DIR__, "myfile"), "myname", "my message", "my remote path")
+        save_dep_metadata(joinpath(@__DIR__, "myfile"), "myname", "my message new", "my remote path new")
+        save_dep_metadata(joinpath(@__DIR__, "myfile"), "myname2", "my message", "my remote path")
+
+        meta = YAML.load_file(md_file)
+        @test haskey(meta, "myname")
+        @test haskey(meta, "myname2")
+        @test meta["myname"]["description"] == "my message new"
+        @test meta["myname"]["remote_path"] == "my remote path new" 
+        @test meta["myname2"]["description"] == "my message"
+        @test meta["myname2"]["remote_path"] == "my remote path" 
     end
 end
