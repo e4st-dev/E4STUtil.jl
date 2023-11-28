@@ -6,7 +6,6 @@ version = "0.1.4"
 [deps]
 DataDeps = "124859b0-ceae-595e-8997-d05f6a7a8dfe"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
-GeoIO = "f5a160d5-e41d-4189-8b61-d57781c419e3"
 OrderedCollections = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 YAML = "ddb6d928-2868-570f-bddf-ab3f9cf99eb6"
