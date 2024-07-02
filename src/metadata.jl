@@ -18,12 +18,17 @@ function save_metadata(file::String, description::String)
     d["description"] = description
     d["time created"] = format(now(), dateformat"yyyy-mm-dd HH:MM:SS.sss")
     st = stacktrace()
-    i = findfirst(s->contains("top-level")(string(s)), st)
-    if i === nothing
-        d["stack trace"] = st
-    else
-        d["stack trace"] = st[1:i]
+    st_io = IOBuffer()
+    for (i,_st) in enumerate(st)
+        i == 1 && continue
+        s = string(_st)
+        if startswith(s, "top-level")
+            println(st_io, "top-level scope at $(_st.file):$(_st.line)")
+            break
+        end
+        println(st_io, s)
     end
+    d["stack trace"] = String(take!(st_io))    
 
     # Check to see if there is already metadata for this file.  If so, save it to `previous`
     if haskey(meta, file)
