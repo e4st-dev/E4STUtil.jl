@@ -97,7 +97,7 @@ const _year2gdp = Dict(
 )
 struct GDP end
 const gdp = GDP()
-maxyear(::GDP) = maximum(keys(GDP))
+maxyear(::GDP) = 2023
 
 _year2cpi = Dict(
     1913=>9.9,
@@ -215,7 +215,7 @@ _year2cpi = Dict(
 )
 struct CPI end
 const cpi = CPI()
-maxyear(::CPI) = maximum(keys(CPI))
+maxyear(::CPI) = 2023
 
 """
     usd_cr(y1, y2; source=gdp, future=nothing) -> r
