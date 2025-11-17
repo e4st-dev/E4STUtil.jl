@@ -93,11 +93,12 @@ const _year2gdp = Dict(
     2020=>113.648,
     2021=>118.37, 
     2022=>117.965,
-    2023=>122.265
+    2023=>122.265,
+    2024=>125.172
 )
 struct GDP end
 const gdp = GDP()
-maxyear(::GDP) = 2023
+maxyear(::GDP) = 2024
 
 _year2cpi = Dict(
     1913=>9.9,
@@ -210,12 +211,13 @@ _year2cpi = Dict(
     2020=>258.811,
     2021=>270.970,
     2022=>292.655,
-    2023=>304.702
+    2023=>304.702,
+    2024=>313.684
 
 )
 struct CPI end
 const cpi = CPI()
-maxyear(::CPI) = 2023
+maxyear(::CPI) = 2024
 
 """
     usd_cr(y1, y2; source=gdp, future=nothing) -> r
