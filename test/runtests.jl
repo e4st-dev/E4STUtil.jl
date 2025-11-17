@@ -19,8 +19,8 @@ import E4STUtil.save_dep_metadata
             @test usd_cr(2021, 1929, source=cpi) < 1
         end
         @testset "Test future" begin
-            @test usd_cr(1929, 2024, future=0.02) ≈ usd_cr(1929, 2023)*1.02
-            @test usd_cr(1929, 2025, future=0.02) ≈ usd_cr(1929, 2023)*1.02*1.02
+            @test usd_cr(1929, 2025, future=0.02) ≈ usd_cr(1929, 2024)*1.02
+            @test usd_cr(1929, 2026, future=0.02) ≈ usd_cr(1929, 2024)*1.02*1.02
         end
     end
     @testset "Test saving metadata" begin
